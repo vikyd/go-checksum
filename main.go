@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 
 	"os"
@@ -20,23 +21,46 @@ func main() {
 		fmt.Println(err)
 		return
 	}
+
 	switch mode := fi.Mode(); {
 	case mode.IsDir():
-		// do directory stuff
-		fmt.Println("directory")
-		return
+		fmt.Println("directory: " + file)
+		doDir(file)
 	case mode.IsRegular():
-		// do file stuff
-		fmt.Println("file")
+		fmt.Println("file: " + file)
+		doGoMod(file)
+	}
+}
+
+func doDir(dir string) {
+	if len(os.Args) < 3 {
+		fmt.Println("needs parameters: module path with version like: github.com/gin-gonic/gin@v1.4.0")
+		return
 	}
 
-	// h, err := checksum.HashGoMod("/Users/viky/tmp/gosum/checksum-dir/gin/go.mod")
-	h, err := checksum.HashGoMod("x/go.mod")
+	prefix := os.Args[2]
+
+	h, err := checksum.HashDir(dir, prefix)
 	if err != nil {
 		fmt.Println(err.Error())
 		return
 	}
+	fmt.Println(PrettyPrint(h))
 
-	fmt.Println(checksum.PrettyPrint(h))
+}
 
+func doGoMod(file string) {
+	h, err := checksum.HashGoMod(file)
+	if err != nil {
+		fmt.Println(err.Error())
+		return
+	}
+	fmt.Println(PrettyPrint(h))
+
+}
+
+// PrettyPrint convert struct to pretty string
+func PrettyPrint(i interface{}) string {
+	s, _ := json.MarshalIndent(i, "", "\t")
+	return string(s)
 }

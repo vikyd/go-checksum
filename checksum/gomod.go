@@ -14,7 +14,7 @@ type GoModHash struct {
 	HashBase64            string
 	HashSynthesized       string
 	HashSynthesizedBase64 string
-	GoSum                 string
+	GoCheckSum            string
 }
 
 // HashGoMod hash the go.mod file
@@ -49,9 +49,8 @@ func HashGoMod(goModFile string) (GoModHash, error) {
 		HashBase64:            Base64(bArr),
 		HashSynthesized:       hashSynthesized,
 		HashSynthesizedBase64: Base64(bArrFinal),
-		GoSum:                 "h1:" + Base64(bArrFinal),
+		GoCheckSum:            "h1:" + Base64(bArrFinal),
 	}
 
 	return allHash, nil
-
 }
