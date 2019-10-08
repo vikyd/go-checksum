@@ -158,3 +158,7 @@ Steps:
   - then `GoCheckSum` is: `h1:CCfM7`
   - `h1`: [The hash begins with an algorithm prefix of the form "h<N>:". The only defined algorithm prefix is "h1:", which uses SHA-256.](https://tip.golang.org/cmd/go/#hdr-Module_authentication_using_go_sum)
   - `h`: hash
+
+# Ref
+
+Golang source code about how to calc hash for modules: https://github.com/golang/go/blob/master/src/cmd/go/internal/dirhash/hash.go
