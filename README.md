@@ -161,4 +161,4 @@ Steps:
 
 # Ref
 
-Golang source code about how to calc hash for modules: https://github.com/golang/go/blob/master/src/cmd/go/internal/dirhash/hash.go
+Golang source code about how to calc hash for modules: https://github.com/golang/mod/blob/release-branch.go1.15/sumdb/dirhash/hash.go
