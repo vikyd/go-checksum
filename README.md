@@ -24,16 +24,16 @@ git checkout v1.4.0
 ## Install go-checksum
 
 ```sh
-go get github.com/vikyd/go-checksum
+go get -u github.com/vikyd/go-checksum
 ```
 
-## Calc checksum of go.mod
+## Calc checksum of `go.mod`
 
 ```sh
 go-checksum relOrAbsPathOfGinDir/go.mod
 ```
 
-should prints like:
+will print like:
 
 ```
 file: /Users/viky/tmp/gin/go.mod
@@ -65,7 +65,7 @@ go-checksum relOrAbsPathOfGinDir github.com/gin-gonic/gin@v1.4.0
 - 2nd param: module prefix with version
   - necessary for dir checksum
 
-should prints like:
+will **print** like:
 
 ```
 directory: /Users/viky/tmp/gin
@@ -86,7 +86,7 @@ the online checksum: `github.com/gin-gonic/gin v1.4.0 h1:3tMoCCfM7ppqsR0ptz/wi1i
 
 # Explain
 
-## How go.mod checksum works?
+## How `go.mod` checksum works?
 
 Steps:
 
